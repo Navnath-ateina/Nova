@@ -1,0 +1,12 @@
+---
+name: "balance-transfer-Ybl"
+x-type: "hlfv1"
+description: "Balance Transfer Network - client definition for Ybl"
+version: "1.0"
+client:
+  organization: Ybl
+  credentialStore:
+    path: "./fabric-client-kv-Ybl"
+    cryptoStore:
+      path: "/tmp/fabric-client-kv-Ybl"
+    wallet: wallet-name

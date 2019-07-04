@@ -1,0 +1,12 @@
+192.168.5.169	orderer.yesbank.in
+192.168.5.169   orderer2.yesbank.in
+192.168.5.169   orderer3.yesbank.in
+192.168.5.169   couchdb0vendor
+192.168.5.169   couchdb0anchor
+192.168.5.169   couchdb0ybl
+192.168.5.169   peer0.ybl.yesbank.in
+192.168.5.169   peer0.anchor.yesbank.in
+192.168.5.169   peer0.vendor.yesbank.in
+192.168.5.169   ca-ybl
+192.168.5.169   ca-anchor
+192.168.5.169   ca-vendor

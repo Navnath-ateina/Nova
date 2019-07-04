@@ -1,0 +1,189 @@
+---
+name: "blockchain-setup"
+x-type: "hlfv1"
+description: "Balance Transfer Network"
+version: "1.0"
+channels:
+  channelyblanchorvendor:
+    orderers:
+      - orderer.yesbank.in
+      - orderer2.yesbank.in
+      - orderer3.yesbank.in
+    peers:
+      peer0.ybl.yesbank.in:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.ybl.yesbank.in:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
+
+      peer0.anchor.yesbank.in:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.anchor.yesbank.in:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
+
+      peer0.vendor.yesbank.in:
+        endorsingPeer: true
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: true
+
+      peer1.vendor.yesbank.in:
+        endorsingPeer: false
+        chaincodeQuery: true
+        ledgerQuery: true
+        eventSource: false
+
+
+    chaincodes:
+      - mycc:v0
+
+organizations:
+  Ybl:
+    mspid: YblMSP
+    peers:
+      - peer0.ybl.yesbank.in
+      - peer1.ybl.yesbank.in
+    certificateAuthorities:
+      - ca-ybl
+    adminPrivateKey:
+      path: artifacts/crypto-config/peerOrganizations/ybl.yesbank.in/users/Admin@ybl.yesbank.in/msp/keystore/dffd5d48b93de914884e2690d2b57beed56707dca93c5f4824bd201c5b12b156_sk
+    signedCert:
+      path: artifacts/crypto-config/peerOrganizations/ybl.yesbank.in/users/Admin@ybl.yesbank.in/msp/signcerts/Admin@ybl.yesbank.in-cert.pem
+  Anchor:
+    mspid: AnchorMSP
+    peers:
+      - peer0.anchor.yesbank.in
+      - peer1.anchor.yesbank.in
+    certificateAuthorities:
+      - ca-anchor
+    adminPrivateKey:
+      path: artifacts/crypto-config/peerOrganizations/anchor.yesbank.in/users/Admin@anchor.yesbank.in/msp/keystore/0a1ee0f793e6305346e9ab443d367290cc24185a7901c1363c4674b955cc137f_sk
+    signedCert:
+      path: artifacts/crypto-config/peerOrganizations/anchor.yesbank.in/users/Admin@anchor.yesbank.in/msp/signcerts/Admin@anchor.yesbank.in-cert.pem
+  Vendor:
+    mspid: VendorMSP
+    peers:
+      - peer0.Vendor.yesbank.in
+      - peer1.vendor.yesbank.in
+    certificateAuthorities:
+      - ca-vendor
+    adminPrivateKey:
+      path: artifacts/crypto-config/peerOrganizations/vendor.yesbank.in/users/Admin@vendor.yesbank.in/msp/keystore/7da03c2ce86283947fc9fe88510c80d80eb7279596c3533f0d11e4f7f0c18925_sk
+    signedCert:
+      path: artifacts/crypto-config/peerOrganizations/vendor.yesbank.in/users/Admin@vendor.yesbank.in/msp/signcerts/Admin@vendor.yesbank.in-cert.pem
+
+orderers:
+  orderer.yesbank.in:
+    url: grpcs://orderer.yesbank.in:7050
+    grpcOptions:
+      ssl-target-name-override: orderer.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/ordererOrganizations/yesbank.in/orderers/orderer.yesbank.in/tls/ca.crt
+  orderer2.yesbank.in:
+    url: grpcs://orderer2.yesbank.in:7050
+    grpcOptions:
+      ssl-target-name-override: orderer2.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/ordererOrganizations/yesbank.in/orderers/orderer2.yesbank.in/tls/ca.crt
+  orderer3.yesbank.in:
+    url: grpcs://orderer3.yesbank.in:7050
+    grpcOptions:
+      ssl-target-name-override: orderer3.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/ordererOrganizations/yesbank.in/orderers/orderer3.yesbank.in/tls/ca.crt
+
+peers:
+  peer0.ybl.yesbank.in:
+    url: grpcs://peer0.ybl.yesbank.in:7051
+    eventUrl: grpcs://peer0.ybl.yesbank.in:7053
+    grpcOptions:
+      ssl-target-name-override: peer0.ybl.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/ybl.yesbank.in/peers/peer0.ybl.yesbank.in/tls/ca.crt
+
+  peer1.ybl.yesbank.in:
+    url: grpcs://peer1.ybl.yesbank.in:8051
+    eventUrl: grpcs://peer1.ybl.yesbank.in:8053
+    grpcOptions:
+      ssl-target-name-override: peer1.ybl.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/ybl.yesbank.in/peers/peer1.ybl.yesbank.in/tls/ca.crt
+
+  peer0.anchor.yesbank.in:
+    url: grpcs://peer0.anchor.yesbank.in:9051
+    eventUrl: grpcs://peer0.anchor.yesbank.in:9053
+    grpcOptions:
+      ssl-target-name-override: peer0.anchor.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/anchor.yesbank.in/peers/peer0.anchor.yesbank.in/tls/ca.crt
+
+  peer1.anchor.yesbank.in:
+    url: grpcs://peer1.anchor.yesbank.in:10051
+    eventUrl: grpcs://peer1.anchor.yesbank.in:10053
+    grpcOptions:
+      ssl-target-name-override: peer1.anchor.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/anchor.yesbank.in/peers/peer1.anchor.yesbank.in/tls/ca.crt
+
+  peer0.vendor.yesbank.in:
+    url: grpcs://peer0.vendor.yesbank.in:11051
+    eventUrl: grpcs://peer0.vendor.yesbank.in:11053
+    grpcOptions:
+      ssl-target-name-override: peer0.vendor.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/vendor.yesbank.in/peers/peer0.vendor.yesbank.in/tls/ca.crt
+
+  peer1.vendor.yesbank.in:
+    url: grpcs://peer1.vendor.yesbank.in:12051
+    eventUrl: grpcs://peer1.vendor.yesbank.in:12053
+    grpcOptions:
+      ssl-target-name-override: peer1.vendor.yesbank.in
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/vendor.yesbank.in/peers/peer1.vendor.yesbank.in/tls/ca.crt
+certificateAuthorities:
+  ca-ybl:
+    url: https://localhost:7054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/ybl.yesbank.in/ca/ca.ybl.yesbank.in-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca-ybl
+
+  ca-anchor:
+    url: https://localhost:8054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/anchor.yesbank.in/ca/ca.anchor.yesbank.in-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca-anchor
+
+  ca-vendor:
+    url: https://localhost:9054
+    httpOptions:
+      verify: false
+    tlsCACerts:
+      path: artifacts/crypto-config/peerOrganizations/vendor.yesbank.in/ca/ca.vendor.yesbank.in-cert.pem
+    registrar:
+      - enrollId: admin
+        enrollSecret: adminpw
+    caName: ca-vendor
+

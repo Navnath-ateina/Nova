@@ -1,0 +1,30 @@
+# Base compose files for:
+
+version: '2'  # v3 does not support 'extends' yet
+
+services:
+
+  peer0.abc.cateina.in:
+    extends:
+      file: ../peer-base.yaml
+      service: peer-base
+    container_name: peer0.abc.cateina.in
+    hostname: peer0.abc.cateina.in
+    environment:
+      - CORE_PEER_ID=peer0.abc.cateina.in
+      - CORE_PEER_ADDRESS=peer0.abc.cateina.in:7051
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer0.abc.cateina.in:7051      
+      - CORE_PEER_LISTENADDRESS=peer0.abc.cateina.in:7051      
+      - CORE_PEER_CHAINCODELISTENADDRESS=peer0.abc.cateina.in:7052
+      - CORE_PEER_EVENTS_ADDRESS=peer0.abc.cateina.in:7051      
+      - CORE_PEER_LOCALMSPID=AbcMSP
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./crypto-config/peerOrganizations/abc.cateina.in/peers/peer0.abc.cateina.in/msp:/etc/hyperledger/fabric/msp
+        - ./crypto-config/peerOrganizations/abc.cateina.in/peers/peer0.abc.cateina.in/tls:/etc/hyperledger/fabric/tls
+    network_mode: "host"
+    ports: 
+      - 7051:7051 
+      - 7053:7053 
+    restart: always    
+    command: peer node start    

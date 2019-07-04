@@ -1,0 +1,12 @@
+---
+name: "balance-transfer-Vendor"
+x-type: "hlfv1"
+description: "Balance Transfer Network - client definition for Vendor"
+version: "1.0"
+client:
+  organization: Vendor
+  credentialStore:
+    path: "./fabric-client-kv-Vendor"
+    cryptoStore:
+      path: "/tmp/fabric-client-kv-Vendor"
+    wallet: wallet-name

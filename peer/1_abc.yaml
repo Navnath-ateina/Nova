@@ -1,0 +1,26 @@
+version: '2'
+services:
+  peer1.abc.cateina.in:
+    container_name: peer1.abc.cateina.in
+    extends:
+      file: ../peer-base.yaml
+      service: peer-base
+    environment:
+      - CORE_PEER_ID=peer1.abc.cateina.in
+      - CORE_PEER_ADDRESS=peer1.abc.cateina.in:8051
+      - CORE_PEER_LISTENADDRESS=peer1.abc.cateina.in:8051
+      - CORE_PEER_CHAINCODELISTENADDRESS=0.0.0.0:8052
+      - CORE_PEER_GOSSIP_EXTERNALENDPOINT=peer1.abc.cateina.in:8051
+      - CORE_PEER_GOSSIP_BOOTSTRAP=peer0.abc.cateina.in:7051
+      - CORE_PEER_EVENTS_ADDRESS=peer1.abc.cateina.in:8053
+      - CORE_PEER_LOCALMSPID=AbcMSP
+
+    volumes:
+        - /var/run/:/host/var/run/
+        - ./crypto-config/peerOrganizations/abc.cateina.in/peers/peer1.abc.cateina.in/msp:/etc/hyperledger/fabric/msp
+        - ./crypto-config/peerOrganizations/abc.cateina.in/peers/peer1.abc.cateina.in/tls:/etc/hyperledger/fabric/tls
+
+    ports:
+      - 8051:8051
+      - 8053:8053
+

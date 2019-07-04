@@ -1,0 +1,22 @@
+version: '2'
+services:
+
+  couchdb0:
+    container_name: couchdb0
+    hostname: couchdb0
+    image: hyperledger/fabric-couchdb
+    ports:
+      - 5984
+    restart: always
+    environment:
+      - COUCHDB_USER=admin
+      - COUCHDB_PASSWORD=password
+    networks:
+      mynet123:
+       ipv4_address: 172.19.0.2
+
+networks:
+  mynet123:
+    ipam:
+      config:
+        - subnet: 172.19.0.0/16

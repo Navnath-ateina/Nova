@@ -1,0 +1,12 @@
+---
+name: "balance-transfer-Anchor"
+x-type: "hlfv1"
+description: "Balance Transfer Network - client definition for Anchor"
+version: "1.0"
+client:
+  organization: Anchor
+  credentialStore:
+    path: "./fabric-client-kv-Anchor"
+    cryptoStore:
+      path: "/tmp/fabric-client-kv-Anchor"
+    wallet: wallet-name

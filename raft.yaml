@@ -1,0 +1,17 @@
+version: '2'
+services:
+  orderer.yesbank.in:
+    extends:
+      file: ./peer-base.yaml
+      service: orderer-base
+    environment:
+      - ORDERER_GENERAL_LISTENPORT=7050
+      - CORE_VM_DOCKER_HOSTCONFIG_NETWORKMODE=host
+    container_name: orderer.yesbank.in
+    volumes:
+        - ./channel-artifacts/genesis.block:/var/hyperledger/orderer/orderer.genesis.block
+        - ./crypto-config/ordererOrganizations/yesbank.in/orderers/orderer.yesbank.in/msp:/var/hyperledger/orderer/msp
+        - ./crypto-config/ordererOrganizations/yesbank.in/orderers/orderer.yesbank.in/tls/:/var/hyperledger/orderer/tls
+    ports:
+    - 7050:7050 
+    extra_hosts:

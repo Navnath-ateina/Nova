@@ -1,0 +1,12 @@
+version: '2'
+services:
+  couchdb0:
+    container_name: couchdb0
+    hostname: couchdb0
+    image: hyperledger/fabric-couchdb:0.4.15
+    ports:
+      - 5984:5984
+    environment:
+    - COUCHDB_USER=admin
+    - COUCHDB_PASSWORD=manchester
+    restart: always
