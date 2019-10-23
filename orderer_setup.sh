@@ -32,7 +32,7 @@ services:
 	do
     #echo "in second while"
 		orderer=$(cat $hosts_file | grep -i "orderer"$j".$domain"| uniq | awk -F' ' '{print $1}' )	
-		echo "            - \"orderer"$j".yesbank.in: $orderer\" " >> ./orderer"$i".$domain.yaml
+		echo "            - \"orderer"$j".$domain: $orderer\" " >> ./orderer"$i".$domain.yaml
     j=$(( j + 1 ))
 
 	done
@@ -47,9 +47,9 @@ do
   #echo "in second while"
   orderer=$(cat $hosts_file | grep -i "orderer"$j".$domain"| uniq | awk -F' ' '{print $1}' );
   echo "orderer"
-  echo "            - \"orderer"$j".yesbank.in: $orderer\" " >> ./orderer.$domain.yaml
+  echo "            - \"orderer"$j".$domain: $orderer\" " >> ./orderer.$domain.yaml
   j=$(( j + 1 ))
 
 done
 orderer=$(cat $hosts_file | grep -i "orderer.$domain"| uniq | awk -F' ' '{print $1}' );
-echo "            - \"orderer.yesbank.in: $orderer\" " >> ./orderer.$domain.yaml
+echo "            - \"orderer.$domain: $orderer\" " >> ./orderer.$domain.yaml
